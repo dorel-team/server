@@ -7,15 +7,43 @@ const router = express.Router();
 
 
 const mongoose = require('mongoose');
+const models = require('../models/models');
 
-mongoose.connect(`mongodb://localhost:27017/proba`)
-.then(() => {
-    console.log('Connected to database');
-    // app.listen(port, () => {
-    //   console.log(`Express server listening on port ${port}`);
-    // });
-  });
 
+
+const db = `mongodb://localhost:27017/proba`
+
+mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true  }, err => {
+  if (err) {
+    console.error('Eroare! ' + err);
+  } else {
+    console.log('Conectat la baza de date!');
+
+  }
+})
+
+
+let proba = new models.serialeFavorite({user:"adi"});
+proba.save(function (err) {
+  if (err) return handleError(err);
+  console.log("salvat");
+  // saved!
+});
+
+
+
+
+
+models.serialeFavorite.find((err, element) => {
+
+  if (err) {
+
+    console.log(err);
+  } else {
+    console.log(element);
+  }
+
+})
 
 
 

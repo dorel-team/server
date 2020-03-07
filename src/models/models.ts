@@ -1,16 +1,11 @@
-const mongoose = require('mongoose');
+import { Schema, model } from 'mongoose';
 
-const Schema = mongoose.Schema;
-
-
-
-export const favoriteSchema = new Schema({
+const favoriteSchema: Schema = new Schema({
     id_serial: String,
     user: String
 })
 
-
-export const vizualizateSchema = new Schema({
+const vizualizateSchema: Schema = new Schema({
     user: String,
     id_favorit: Array,
     id_vizualizat: Array,
@@ -21,9 +16,7 @@ export const vizualizateSchema = new Schema({
 
 })
 
-
-
-export const rezervaSchema = new Schema({
+const rezervaSchema: Schema = new Schema({
     user: String,
     id_favorit: Array,
     id_vizualizat: Array,
@@ -34,8 +27,7 @@ export const rezervaSchema = new Schema({
 
 })
 
-
-export const serialSchema = new Schema({
+const serialSchema: Schema = new Schema({
     id_serial: String,
     nume_serial: String,
     descriere: String,
@@ -57,27 +49,13 @@ export const serialSchema = new Schema({
         }]
     }],
     status: String
-
 })
 
 
-var Dorel = {
-    plmm: any = 1,
-    ion1()
-    {
-        console.log('merge1: ', this.plmm);
-    },
 
-    ion2()
-    {
-        console.log('merge2');
-    }
-}
-
-
-// module.exports.serialeFavorite = mongoose.model('SerialFavorit', favoriteSchema, 'seriale_favorite')
-// module.exports.vizualizat = mongoose.model('Vizualizat', vizualizateSchema, 'Vizualizate')
-// module.exports.serialSchema = mongoose.model('serial', serialSchema, 'Seriale')
-// module.exports.rezervaSchema = mongoose.model('rezerva', rezervaSchema, 'Rezerva')
+export const serialeFavorite = model('SerialFavorit', favoriteSchema, 'seriale_favorite')
+// export const vizualizat = model('Vizualizat', vizualizateSchema, 'Vizualizate')
+// export const serialSchema = model('serial', serialSchema, 'Seriale')
+// export const rezervaSchema = model('rezerva', rezervaSchema, 'Rezerva')
 
 

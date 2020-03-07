@@ -1,37 +1,24 @@
-const express = require('express');
-const http = require('http');
-
-
-
+import * as express from 'express';
+import { connect as mongooseConnect } from 'mongoose';
+import { serialeFavorite } from '../models/models';
 export const router = express.Router();
-
-
-// const mongoose = require('mongoose');
-import mongoose, { Schema } from 'mongoose';
-import { favoriteSchema } from '../models/models';
-// const models = require('../models/models');
-
 
 
 const db = `mongodb://localhost:27017/proba`
 
-mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true }, err =>
-{
-  if (err)
-  {
+mongooseConnect(db, { useNewUrlParser: true, useUnifiedTopology: true  }, err => {
+  if (err) {
     console.error('Eroare! ' + err);
-  } else
-  {
+  } else {
     console.log('Conectat la baza de date!');
 
   }
 })
 
 
-let proba = new favoriteSchema({ user: "adi" });
-proba.save(function (err)
-{
-  if (err) return handleError(err);
+const proba = new serialeFavorite({user:"adi"});
+proba.save(function (err) {
+  if (err) return console.log(err);
   console.log("salvat");
   // saved!
 });
@@ -40,35 +27,24 @@ proba.save(function (err)
 
 
 
-favoriteSchema.find((err, element) =>
-{
+serialeFavorite.find((err, element) => {
 
-  if (err)
-  {
+  if (err) {
 
     console.log(err);
-  } else
-  {
+  } else {
     console.log(element);
   }
 
 })
 
-
-
-
-router.get('/', (req, res) =>
-{
-  res.status(200);
-  res.send('ok');
+router.get('/', (req, res) => {
+    res.status(200);
+    res.send('ok');
 })
 
-
-router.get('/proba', (req, res) =>
-{
-
-  res.status(200);
-  res.send('proba');
-})
-
-// module.exports = router;
+router.get('/proba', (req, res) => {
+      
+      res.status(200);
+      res.send('proba');
+  })

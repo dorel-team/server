@@ -2,7 +2,6 @@
 server API
 
 
-
 # ports used
 8000 - React (on hold)
 8001 - git updater script

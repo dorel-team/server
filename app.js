@@ -1,10 +1,8 @@
 const express = require('express');
 const PORT = 5001 ;
-const api = require('./routes/api')
+const api = require('./src/routes/api')
 
 const app =express();
-
-
 
 app.use('/',api);
 

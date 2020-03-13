@@ -38,8 +38,12 @@ async function testRecord(req: express.Request, res: express.Response)
     email: 'dorel69@email.com'
   }
 
-  const respunsProba: IUserModel = new userModel(elementToInsert);
 
+  console.log('preparing model...');
+  const respunsProba: IUserModel = new userModel(elementToInsert);
+  
+  
+  console.log('saving model...');
   try
   {
     await respunsProba.save(err =>

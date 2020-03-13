@@ -5,7 +5,7 @@ import express from 'express';
 const PORT = 8003;
 const app = express();
 
-app.use('/', dorel);
+app.use('*', dorel);
 
 
 app.listen(PORT, function ()

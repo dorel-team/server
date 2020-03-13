@@ -56,9 +56,9 @@ async function testRecord(req: express.Request, res: express.Response)
     return;
   }
 
-  console.log("salvat");
-
-
+  console.log("salvat !");
+  res.status(200);
+  res.send('salvat');
 }
 
 

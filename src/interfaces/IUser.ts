@@ -1,16 +1,17 @@
+import { IPersonalInfoModel, IUserModel } from "./IModel";
 
 export interface IPersonalInfo
 {
-    birthDate:Date,
-    adress:string
+    birthDate: IPersonalInfoModel['birthDate'],
+    address: IPersonalInfoModel['address']
 }
 
 
 export interface IUser
 {
-    uid: string,
-    user_name: string,
-    email: string,
-    avatar?: string,
-    personal_info?: IPersonalInfo,
+    uid: IUserModel['uid'],
+    userName: IUserModel['userName'],
+    email: IUserModel['userName'],
+    avatar?: IUserModel['avatar'],
+    personalInfo?: IPersonalInfo,
 }

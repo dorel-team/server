@@ -1,6 +1,8 @@
 import * as express from 'express';
 import { connect as mongooseConnect } from 'mongoose';
 import { userModel } from '../models/model_user';
+import { IUser } from '../interfaces/IUser';
+import { IUserModel } from '../interfaces/IModel';
 export const router = express.Router();
 
 
@@ -26,20 +28,35 @@ mongooseConnect(db, { useNewUrlParser: true, useUnifiedTopology: true }, err =>
 //   // saved!
 // });
 
-function testRecord()
+async function testRecord(req: express.Request, res: express.Response)
 {
 
-  const proba = new userModel(
-    {
-      
-    });
-
-  proba.save(function (err)
+  const elementToInsert: IUser =
   {
-    if (err) return console.log(err);
-    console.log("salvat");
-    // saved!
-  });
+    uid: 'dorel',
+    userName: 'd01',
+    email: 'dorel69@email.com'
+  }
+
+  const respunsProba: IUserModel = new userModel(elementToInsert);
+
+  try
+  {
+    await respunsProba.save(err =>
+    {
+      if (err) return console.log(err);
+      // saved!
+    });
+  }
+  catch (ex)
+  {
+    console.log(ex);
+    res.status(500);
+    res.send('eroare');
+    return;
+  }
+
+  console.log("salvat");
 
 
 }
@@ -56,18 +73,18 @@ function testRecord()
 
 // })
 
+
+
+router.get('/proba', (req, res) => testRecord);
+
 router.get('/', (req, res) =>
 {
   res.status(200);
   res.send('ok');
 })
 
-router.get('/proba', (req, res) => 
-{
-  testRecord();
-  res.status(200);
-  res.send('proba');
-})
+
+
 
   // serialeFavorite.find((err, element) => {
 

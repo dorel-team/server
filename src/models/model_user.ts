@@ -1,15 +1,26 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, Model, Document, SchemaDefinition } from 'mongoose';
+import { IUserModel } from '../interfaces/IModel';
 
-const userSchema: Schema = new Schema(
+
+
+const definition: SchemaDefinition =
+{
+    uid: String,
+    email: String,
+    avatar: String,
+    userName: String,
+    personalInfo:
     {
-        uid: String,
-        email: String,
-        avatar: String,
-        personal_info: String,
-        user_name: String
-    })
+        birthDate: { type: Date, default: Date.now() },
+        adress: String
+    }
+};
+
+const userSchema: Schema<IUserModel> = new Schema(definition);
 
 
 
-export const userModel = model('SerialFavorit', userSchema, 'collection_users');
+export const userModel: Model<IUserModel, {}> = model<IUserModel>('SerialFavorit', userSchema, 'collection_users');
+
 // export const userModel = model('SerialFavorit', userSchema, 'collection_users');
+

@@ -6,7 +6,8 @@ import { IUserModel } from '../interfaces/IModel';
 export const router = express.Router();
 
 
-const db = `mongodb://localhost:27017/proba`
+// const db = `mongodb://localhost:27017/proba`
+const db = `mongodb://admin:overview@192.168.100.105:27017/proba`
 
 mongooseConnect(db, { useNewUrlParser: true, useUnifiedTopology: true }, err =>
 {

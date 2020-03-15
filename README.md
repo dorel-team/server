@@ -9,4 +9,27 @@ server API
 8003 - nodejs Typescript server for Angular
 
 
-# other info
+# routes (CRUD style)
+
+## routes
+
+/users/add
+/users/info - get user information
+/users/update
+/users/delete
+
+/users/:id - PUT, DELETE, GET
+/users/ - POST
+
+
+/projects/add
+/projects/info
+/projects/update
+/projects/delete
+
+/activities/add
+/activities/info
+/activities/update
+/activities/delete
+
+

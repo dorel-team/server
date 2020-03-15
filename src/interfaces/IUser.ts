@@ -9,9 +9,17 @@ export interface IPersonalInfo
 
 export interface IUser
 {
-    uid: IUserModel['uid'],
     userName: IUserModel['userName'],
     email: IUserModel['userName'],
     avatar?: IUserModel['avatar'],
     personalInfo?: IPersonalInfo,
+}
+
+export function IsIUser(payload: any): payload is IUser
+{
+    return payload
+    && payload.userName
+    && typeof payload.userName === 'string'
+    && payload.email
+    && typeof payload.email === 'string';
 }

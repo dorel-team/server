@@ -9,7 +9,6 @@ export interface IPersonalInfoModel
 
 export interface IUserModel extends Document
 {
-    uid: string,
     userName: string,
     email: string,
     avatar?: string,

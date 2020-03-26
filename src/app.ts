@@ -7,19 +7,23 @@ import bodyParser from 'body-parser';
 const PORT = 8003;
 const app = express();
 
+
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use('/', routes);
+
+// app.post('/', () => { throw new Error('plm') })
+
+console.log('error handler added');
+
 app.use((err, req, res, next) =>
 {
-    if (res.headersSent) {
-        return next(err)
-      }
-      res.status(500)
-      res.render('error', { error: err })
+    console.log('ERROR HANDLER');
+    res.status(500).send('error');
+    next();
 });
-
-app.use('/', routes);
 
 
 app.listen(PORT, function ()

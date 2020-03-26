@@ -1,12 +1,16 @@
-import express from 'express';
+import { Router } from 'express';
+import asyncHandler from 'express-async-handler';
 import { addUser } from './postUser';
-import { findUser } from './getUser';
+import { findUser as getUser } from './getUser';
+import { findAllUsers as getAllUsers } from './getAllUsers';
+import { deleteUser } from './deleteUser';
 
-export const routeUsers = express.Router();
+export const routeUsers = Router();
 
-routeUsers.post('/', (req, res)=> addUser(req, res));
-// routeUsers.put('/:id', (req, res)=> addUser(req, res));
-// routeUsers.delete('/:id', (req, res)=> addUser(req, res));
-routeUsers.get('/:id', (req, res)=> findUser(req, res));
+routeUsers.post('/', asyncHandler(async (res, req) => addUser(res, req)));
 
-// routeUsers.get('/info', (req, res)=> findUser(req, res));
+routeUsers.get('/', asyncHandler(async (req, res) => getAllUsers(req, res)));
+routeUsers.get('/:id', asyncHandler(async (req, res) => getUser(req, res)));
+
+routeUsers.delete('/:id', asyncHandler(async (req, res) => deleteUser(req, res)));
+console.log(' routes added...');

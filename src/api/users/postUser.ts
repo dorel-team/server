@@ -46,4 +46,5 @@ export async function addUser(req: express.Request, res: express.Response)
   console.log("salvat !");
   res.status(200);
   res.send(saveResponse);
+
 }

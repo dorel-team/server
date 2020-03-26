@@ -1,8 +1,8 @@
-import * as express from 'express';
+import {Router} from 'express';
 import { addUser } from '../api/users/postUser';
 import { routeUsers } from '../api/users/users_routes';
 
-export const router = express.Router();
+export const router = Router();
 
 router.use('/users', routeUsers);
 
@@ -14,4 +14,3 @@ router.all('/', (req, res) =>
   res.status(200);
   res.send('[default]');
 })
-

@@ -5,8 +5,8 @@ import { IUserModel } from '../interfaces/IModel';
 
 const definition: SchemaDefinition =
 {
-    userName: String,
-    email: String,
+    userName: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
     avatar: String,
     personalInfo:
     {

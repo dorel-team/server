@@ -6,7 +6,7 @@ import { DeleteWriteOpResultObject } from 'mongodb';
 
 const responseInvalidUser: IResponse = { responseCode: 404, responseMessage: 'Invalid userID' };
 
-export async function deleteUser(req: express.Request, res: express.Response)
+export async function deleteProject(req: express.Request, res: express.Response)
 {
     const userId = req.params.id;
 

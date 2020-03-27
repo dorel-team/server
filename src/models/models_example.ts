@@ -3,7 +3,7 @@ import { Schema, model } from 'mongoose';
 const favoriteSchema: Schema = new Schema({
     id_serial: String,
     user: String
-})
+});
 
 const vizualizateSchema: Schema = new Schema({
     user: String,
@@ -14,7 +14,7 @@ const vizualizateSchema: Schema = new Schema({
         path: String
     }],
 
-})
+});
 
 const rezervaSchema: Schema = new Schema({
     user: String,
@@ -25,7 +25,7 @@ const rezervaSchema: Schema = new Schema({
         path: String
     }],
 
-})
+});
 
 const serialSchema: Schema = new Schema({
     id_serial: String,
@@ -49,11 +49,11 @@ const serialSchema: Schema = new Schema({
         }]
     }],
     status: String
-})
+});
 
 
 
-export const serialeFavorite = model('SerialFavorit', favoriteSchema, 'seriale_favorite')
+export const serialeFavorite = model('SerialFavorit', favoriteSchema, 'seriale_favorite');
 // export const vizualizat = model('Vizualizat', vizualizateSchema, 'Vizualizate')
 // export const serialSchema = model('serial', serialSchema, 'Seriale')
 // export const rezervaSchema = model('rezerva', rezervaSchema, 'Rezerva')

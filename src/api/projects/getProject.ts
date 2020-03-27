@@ -6,7 +6,7 @@ import { respond } from '../../utils/local_utils';
 
 const responseInvalidUser: IResponse = { responseCode: 400, responseMessage: 'Invalid userID' };
 
-export async function getUser(req: express.Request, res: express.Response)
+export async function getProject(req: express.Request, res: express.Response)
 {
 
     const userId = req.params.id;

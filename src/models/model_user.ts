@@ -1,5 +1,5 @@
 import { Schema, model, Model, Document, SchemaDefinition } from 'mongoose';
-import { IUserModel } from '../interfaces/IModel';
+import { IUserModel } from '../interfaces/models/IModelUser';
 
 
 

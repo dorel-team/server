@@ -10,8 +10,11 @@ const PORT = 8003;
 const app = express();
 
 
+// tslint:disable-next-line: deprecation
 app.use(bodyParser.json());
+// tslint:disable-next-line: deprecation
 app.use(bodyParser.urlencoded({ extended: true }));
+
 
 app.use('/', routes);
 

@@ -5,11 +5,9 @@ import { IUserModel } from '../../interfaces/models/IModelUser';
 
 
 
-export async function addUser(req: express.Request, res: express.Response)
+export async function addProject(req: express.Request, res: express.Response)
 {
-  console.log('BINGO !');
-
-  const userId = req.body;
+  const projectId = req.body;
 
   console.log(` body : ${JSON.stringify(req.body)}`);
 

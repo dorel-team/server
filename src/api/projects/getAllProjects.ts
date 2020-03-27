@@ -2,7 +2,7 @@ import express from 'express';
 import { userModel } from '../../models/model_user';
 import { IUserModel } from '../../interfaces/models/IModelUser';
 
-export async function getAllUsers(req: express.Request, res: express.Response)
+export async function getAllProjects(req: express.Request, res: express.Response)
 {
 
     const userId = req.params.id;

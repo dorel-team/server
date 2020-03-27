@@ -13,11 +13,11 @@ export interface IUser
     personalInfo?: IPersonalInfo;
 }
 
-export function IsIUser(payload: any): payload is IUser
+export function IsUser(payload: any): payload is IUser
 {
     return payload
-    && payload.userName
-    && typeof payload.userName === 'string'
-    && payload.email
-    && typeof payload.email === 'string';
+        && payload.userName
+        && typeof payload.userName === 'string'
+        && payload.email
+        && typeof payload.email === 'string';
 }

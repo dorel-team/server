@@ -17,9 +17,4 @@ const definition: SchemaDefinition =
 
 const userSchema: Schema<IUserModel> = new Schema(definition);
 
-
-
 export const userModel: Model<IUserModel, {}> = model<IUserModel>('UsersCollection', userSchema, 'collection_users');
-
-// export const userModel = model('SerialFavorit', userSchema, 'collection_users');
-

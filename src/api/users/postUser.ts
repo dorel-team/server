@@ -1,31 +1,23 @@
 import express from 'express';
-import { userModel } from '../../models/model_user';
-import { IUser, IsIUser } from '../../interfaces/basic/IUser';
+import { userModel } from '../../models/userModel';
+import { IUser, IsUser } from '../../interfaces/basic/IUser';
 import { IUserModel } from '../../interfaces/models/IModelUser';
 
 
 
 export async function addUser(req: express.Request, res: express.Response)
 {
-  console.log('BINGO !');
+  const userPayload = req.body;
 
-  const userId = req.body;
+  console.log(` body : ${JSON.stringify(userPayload)}`);
 
-  console.log(` body : ${JSON.stringify(req.body)}`);
-
-  // const elementToInsert: IUser =
-  // {
-  //   userName: 'd01',
-  //   email: 'dorel69@email.com'
-  // }
-
-  if (!IsIUser(req.body))
+  if (!IsUser(userPayload))
     throw new Error('Wrong user format !');
 
-  const elementToInsert: IUser = req.body;
+  const elementToInsert: IUser = userPayload;
 
   console.log('preparing model...');
-  const respunsProba: IUserModel = new userModel(elementToInsert);
+  const userDocument: IUserModel = new userModel(elementToInsert);
 
 
   console.log('saving model...');
@@ -33,7 +25,7 @@ export async function addUser(req: express.Request, res: express.Response)
   let saveResponse: IUserModel;
   try
   {
-    saveResponse = await respunsProba.save();
+    saveResponse = await userDocument.save();
   }
   catch (ex)
   {

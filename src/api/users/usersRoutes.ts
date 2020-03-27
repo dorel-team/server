@@ -15,3 +15,5 @@ routeUsers.get('/:id', asyncHandler(async (req, res) => getUser(req, res)));
 routeUsers.delete('/:id', asyncHandler(async (req, res) => deleteUser(req, res)));
 
 console.log(' routes added...');
+
+// TODO: implement PUT function for updating users

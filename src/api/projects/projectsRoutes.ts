@@ -18,3 +18,5 @@ routeProjects.get('/:id', asyncHandler(async (req, res) => getProject(req, res))
 routeProjects.delete('/:id', asyncHandler(async (req, res) => deleteProject(req, res)));
 
 console.log(' routes added...');
+
+// TODO: implement PUT function to update projects

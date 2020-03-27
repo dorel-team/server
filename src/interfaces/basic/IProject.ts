@@ -5,11 +5,14 @@ export interface IProject
     members: string[];
 }
 
+
 export function IsProject(payload: any): payload is IProject
 {
     return payload
-    && payload.userName
-    && typeof payload.userName === 'string'
-    && payload.email
-    && typeof payload.email === 'string';
+        && payload.projectName
+        && typeof payload.projectName === 'string'
+        && payload.clientName
+        && typeof payload.clientName === 'string'
+        && payload.members
+        && Array.isArray(payload.members);
 }

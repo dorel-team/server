@@ -21,13 +21,3 @@ export interface IUserModel extends Document
     avatar?: IUser['avatar'];
     personalInfo?: IPersonalInfoModel;
 }
-
-
-export interface IProjectModel extends Document
-{
-    userName: string;
-    email: string;
-    avatar?: string;
-    personalInfo?: IPersonalInfoModel;
-}
-

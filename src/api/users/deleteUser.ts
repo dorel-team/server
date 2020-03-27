@@ -1,5 +1,5 @@
 import express from 'express';
-import { userModel } from '../../models/model_user';
+import { userModel } from '../../models/userModel';
 import { IResponse } from '../../interfaces/IResponse';
 import { Query } from 'mongoose';
 import { DeleteWriteOpResultObject } from 'mongodb';

@@ -1,5 +1,5 @@
 import express from 'express';
-import { userModel } from '../../models/model_user';
+import { userModel } from '../../models/userModel';
 import { IUserModel } from '../../interfaces/models/IModelUser';
 import { IResponse } from '../../interfaces/IResponse';
 import { respond } from '../../utils/local_utils';

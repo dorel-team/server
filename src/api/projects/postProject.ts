@@ -1,37 +1,31 @@
 import express from 'express';
-import { userModel } from '../../models/model_user';
-import { IUser, IsIUser } from '../../interfaces/basic/IUser';
-import { IUserModel } from '../../interfaces/models/IModelUser';
+import { projectModel } from '../../models/projectModel';
+import { IProject, IsProject } from '../../interfaces/basic/IProject';
+import { IProjectModel } from '../../interfaces/models/IModelProject';
 
 
 
 export async function addProject(req: express.Request, res: express.Response)
 {
-  const projectId = req.body;
+  const projectPayload = req.body;
 
-  console.log(` body : ${JSON.stringify(req.body)}`);
+  console.log(` body : ${JSON.stringify(projectPayload)}`);
 
-  // const elementToInsert: IUser =
-  // {
-  //   userName: 'd01',
-  //   email: 'dorel69@email.com'
-  // }
+  if (!IsProject(projectPayload))
+    throw new Error('Wrong project format !');
 
-  if (!IsIUser(req.body))
-    throw new Error('Wrong user format !');
-
-  const elementToInsert: IUser = req.body;
+  const elementToInsert: IProject = projectPayload;
 
   console.log('preparing model...');
-  const respunsProba: IUserModel = new userModel(elementToInsert);
+  const projectDocument: IProjectModel = new projectModel(elementToInsert);
 
 
   console.log('saving model...');
 
-  let saveResponse: IUserModel;
+  let saveResponse: IProjectModel;
   try
   {
-    saveResponse = await respunsProba.save();
+    saveResponse = await projectDocument.save();
   }
   catch (ex)
   {

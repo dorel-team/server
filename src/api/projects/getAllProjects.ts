@@ -1,5 +1,5 @@
 import express from 'express';
-import { userModel } from '../../models/model_user';
+import { userModel } from '../../models/userModel';
 import { IUserModel } from '../../interfaces/models/IModelUser';
 
 export async function getAllProjects(req: express.Request, res: express.Response)

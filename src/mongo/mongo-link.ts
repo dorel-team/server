@@ -1,4 +1,5 @@
-import { set as mongooseSet, connect as mongooseConnect } from 'mongoose';
+import { connection, set as mongooseSet, connect as mongooseConnect } from 'mongoose';
+import { debug } from '../utils/local_utils';
 
 // const db = `mongodb://localhost:27017/proba`
 const db = `mongodb://user_proba:user_proba@192.168.100.105:27017/proba`
@@ -10,15 +11,15 @@ export async function mongoConnect()
     console.log('Starting mongo connection...');
     mongooseSet('bufferCommands', false);
 
-    const ret = await mongooseConnect(db, { useNewUrlParser: true, useUnifiedTopology: true }, err =>
+    connection.on('error', error => { debug('mongo: ' + error.name, 'MONGO') })
+    connection.on('disconnected', () => { debug('mongo: Disconnected', 'MONGO') })
+    connection.on('connected', () => 
     {
-        if (err)
-        {
-            console.error(`Conectarea la Mongo a esuat: ${err}`);
-        } else
-        {
-            console.log(`Conectat la baza de date: ${db}`);
-            mongoConnectState = true;
-        }
+        debug('mongo: Connected', 'MONGO')
+        mongoConnectState = true;
     })
+
+    const ret = await mongooseConnect(db, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true })
+
 }
+

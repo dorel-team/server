@@ -1,34 +1,43 @@
-import { router as routes } from "./routes/routes";
-import express from 'express';
-import { mongoConnect } from "./mongo/mongo-link";
+import { router as routes } from './routes/routes';
+import express, { response } from 'express';
+import { mongoConnect } from './mongo/mongo-link';
 import bodyParser from 'body-parser';
+import { IResponse } from './interfaces/IResponse';
+import { respond } from './utils/local_utils';
 
 
 const PORT = 8003;
 const app = express();
 
 
-
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', routes);
 
-// app.post('/', () => { throw new Error('plm') })
 
-console.log('error handler added');
-
-app.use((err, req, res, next) =>
+// 404 handler
+app.use((req, res, next) =>
 {
-    console.log('ERROR HANDLER');
-    res.status(500).send('error');
+    respond(res, 404, `Oops, the resource you're looking for is ... gone`);
     next();
 });
 
 
-app.listen(PORT, function ()
+// error handler function
+app.use((err, req, res, next) =>
 {
-    console.log(`Serverul merge pe portul ${PORT}`)
+    console.log('ERROR HANDLER');
+
+    respond(res, 500, 'Oops, something wrong happened...');
+    next();
+});
+
+console.log('error handler added');
+
+app.listen(PORT, () =>
+{
+    console.log(`Serverul merge pe portul ${PORT}`);
 });
 
 mongoConnect();

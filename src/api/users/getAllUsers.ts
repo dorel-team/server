@@ -24,8 +24,7 @@ export async function findAllUsers(req: express.Request, res: express.Response)
         return;
     }
 
-    // console.log(searchQuery);
-
     res.status(200);
     res.send(searchQuery);
+
 }

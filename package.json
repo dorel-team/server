@@ -14,7 +14,8 @@
     "codelyzer": "^5.2.1",
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
-    "mongoose": "^5.9.3"
+    "mongoose": "^5.9.3",
+    "tslib": "^1.11.1"
   },
   "devDependencies": {
     "@types/mongodb": "^3.5.2",

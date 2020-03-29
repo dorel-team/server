@@ -8,13 +8,14 @@ export function debug(message: string, moduleName?: string, lineMarker?: string)
     const lineId: string = lineMarker ? `[${lineMarker}]` : '';
     const spacer: string = moduleId || lineId ? '| ' : '';
 
-    const lineHeader = `${moduleId}${lineId}${spacer} ${message}`;  // resulted string format : "[MOD][41234]: mesaj 12344"
+    // resulted string format : "[MODULE_NAME][line_bla_41234]: mesaj bla bla12344"
+    const lineHeader = `${moduleId}${lineId}${spacer} ${message}`;
 
     console.log(`${message}`);
 }
 
 
-export enum HttpReturnCodes
+enum HttpReturnCodes
 {
     OK = 200,
     Created = 201,
@@ -24,18 +25,23 @@ export enum HttpReturnCodes
     InternalServerError = 500
 }
 
+// tslint:disable-next-line: variable-name
+const DefaultErrorMessages: Map<number, string> = new Map(
+    [
+        [400, 'Bad, bad request...'],
+        [404, `Oops, the resource you're looking for is ... missing`],
+        [500, 'Oops, something wrong happened...']
+    ]);
+
+
 
 export function SendError(res, code: number, message?: string)
 {
-    const defaultHardcodedResponse: IResponse = { responseCode: HttpReturnCodes.InternalServerError, responseMessage: message || 'Oops, something wrong happened...' };
+    const errorMessage: string = message || DefaultErrorMessages.get(code) || '._(ツ)_.';
 
-    let errorResponse: IResponse | undefined = errorResponsesList.get(code);
+    const errorResponse: IResponse = { responseCode: code, responseMessage: errorMessage };
 
-    if (!errorResponse)
-        errorResponse = defaultHardcodedResponse;
-
-    console.log(JSON.stringify(errorResponse));
+    //console.log(JSON.stringify(errorResponse));
 
     res.status(errorResponse.responseCode).json(errorResponse);
 }
-

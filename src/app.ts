@@ -1,9 +1,8 @@
 import { router as routes } from './routes/routes';
-import express, { response } from 'express';
+import express from 'express';
 import { mongoConnect } from './mongo/mongo-link';
 import bodyParser from 'body-parser';
-import { IResponse } from './interfaces/IResponse';
-import { respond } from './utils/local_utils';
+import { SendError } from './utils/local_utils';
 
 
 const PORT = 8003;
@@ -22,7 +21,7 @@ app.use('/', routes);
 // 404 handler
 app.use((req, res, next) =>
 {
-    respond(res, 404, `Oops, the resource you're looking for is ... gone`);
+    SendError(res, 404);
     next();
 });
 
@@ -32,7 +31,7 @@ app.use((err, req, res, next) =>
 {
     console.log('ERROR HANDLER');
 
-    respond(res, 500, 'Oops, something wrong happened...');
+    SendError(res, 500);
     next();
 });
 

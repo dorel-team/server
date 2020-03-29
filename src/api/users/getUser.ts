@@ -1,8 +1,7 @@
 import express from 'express';
 import { userModel } from '../../models/userModel';
 import { IUserModel } from '../../interfaces/models/IModelUser';
-import { IResponse } from '../../interfaces/basic/IResponse';
-import { SendError, ErrorIds, HttpReturnCodes } from '../../utils/local_utils';
+import { SendError } from '../../utils/local_utils';
 
 export async function getUser(req: express.Request, res: express.Response)
 {
@@ -32,7 +31,7 @@ export async function getUser(req: express.Request, res: express.Response)
     }
 
     if (!searchQuery)
-        res.status(200).json({});
+        SendError(res, 400);
 
     res.status(200);
     res.send(searchQuery);

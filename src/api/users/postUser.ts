@@ -2,7 +2,7 @@ import express from 'express';
 import { userModel } from '../../models/userModel';
 import { IUser, IsUser } from '../../interfaces/basic/IUser';
 import { IUserModel } from '../../interfaces/models/IModelUser';
-import { SendError, HttpReturnCodes } from '../../utils/local_utils';
+import { SendError } from '../../utils/local_utils';
 
 
 
@@ -13,7 +13,10 @@ export async function addUser(req: express.Request, res: express.Response)
   console.log(` body : ${JSON.stringify(userPayload)}`);
 
   if (!IsUser(userPayload))
-    throw new Error('Wrong user format !');
+  {
+    console.log(`Invalid 'user' format`);
+    throw new Error();
+  }
 
   const elementToInsert: IUser = userPayload;
 

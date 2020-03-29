@@ -29,7 +29,7 @@ app.use((req, res, next) =>
 // error handler function
 app.use((err, req, res, next) =>
 {
-    console.log('ERROR HANDLER...');
+    console.log('ERROR HANDLER');
 
     SendError(res, 500);
     next();

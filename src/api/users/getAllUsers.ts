@@ -1,13 +1,14 @@
 import express from 'express';
 import { userModel } from '../../models/userModel';
 import { IUserModel } from '../../interfaces/models/IModelUser';
+import { SendError } from '../../utils/local_utils';
 
 export async function getAllUsers(req: express.Request, res: express.Response)
 {
 
     const userId = req.params.id;
 
-    console.log(` userID: ${userId}`);
+    console.log(`userID: ${userId}`);
 
     let searchQuery: IUserModel[] | null;
 
@@ -19,8 +20,7 @@ export async function getAllUsers(req: express.Request, res: express.Response)
     catch (ex)
     {
         console.log(`error: ${ex}`);
-        res.sendStatus(500);
-        res.send(ex);
+        SendError(res, 500);
         return;
     }
 

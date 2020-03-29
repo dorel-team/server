@@ -2,6 +2,7 @@ import express from 'express';
 import { userModel } from '../../models/userModel';
 import { IUser, IsUser } from '../../interfaces/basic/IUser';
 import { IUserModel } from '../../interfaces/models/IModelUser';
+import { SendError, HttpReturnCodes } from '../../utils/local_utils';
 
 
 
@@ -30,8 +31,7 @@ export async function addUser(req: express.Request, res: express.Response)
   catch (ex)
   {
     console.log(ex);
-    res.status(500);
-    res.send('eroare');
+    SendError(res, 500);
     return;
   }
 

@@ -3,8 +3,8 @@ import { IUser, IPersonalInfo } from '../basic/IUser';
 
 export interface IPersonalInfoModel
 {
-    birthDate: IPersonalInfo['birthDate'],
-    address: IPersonalInfo['address']
+    birthDate: IPersonalInfo['birthDate'];
+    address: IPersonalInfo['address'];
 }
 export interface IPersonalInfoModel
 {

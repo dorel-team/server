@@ -1,32 +1,30 @@
 import express from 'express';
-import { userModel } from '../../models/userModel';
-import { IUserModel } from '../../interfaces/models/IModelUser';
-import { IResponse } from '../../interfaces/IResponse';
-import { respond } from '../../utils/local_utils';
-
-const responseInvalidUser: IResponse = { responseCode: 400, responseMessage: 'Invalid userID' };
+import { IResponse } from '../../interfaces/basic/IResponse';
+import { SendError } from '../../utils/local_utils';
+import { IProjectModel } from '../../interfaces/models/IModelProject';
+import { projectModel } from '../../models/projectModel';
 
 export async function getProject(req: express.Request, res: express.Response)
 {
 
-    const userId = req.params.id;
+    const projectId = req.params.id;
 
-    if (typeof userId !== 'string')
+    if (typeof projectId !== 'string')
         throw new Error();
 
-    console.log(` userID: ${userId}`);
+    console.log(` projectID: ${projectId}`);
 
-    let searchQuery: IUserModel | null;
+    let searchQuery: IProjectModel | null;
 
     try
     {
         console.log('searching...');
-        searchQuery = await userModel.findOne({ _id: userId });
+        searchQuery = await projectModel.findOne({ _id: projectId });
     }
     catch (ex)
     {
         console.log(`error: ${ex}`);
-        respond(res, 400, 'Invalid userID');
+        SendError(res, 400, 'Invalid userID');
         return;
     }
 
@@ -35,8 +33,6 @@ export async function getProject(req: express.Request, res: express.Response)
         // respond(res, 200, JSON.stringify(searchQuery))
         res.status(200).json({});
     }
-
-    const a = 'vasile"ceva"';
 
     res.status(200);
     res.send(searchQuery);
